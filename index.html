@@ -13,16 +13,16 @@
             theme: {
                 extend: {
                     colors: {
-                        'bg-dark': '#0a0e17',
-                        'card-bg': '#131a2a',
-                        'card-bg-hover': '#1a2235',
-                        'text-primary': '#f0f6fc',
-                        'text-secondary': '#8b949e',
-                        'border-color': '#30363d',
-                        'border-color-shine': '#445566',
-                        'btn-resume': '#238636',
-                        'btn-github': '#0d1117',
-                        'btn-linkedin': '#0a66c2',
+                        'bg-dark': '#0f172a',
+                        'card-bg': '#1e293b',
+                        'card-bg-hover': '#334155',
+                        'text-primary': '#f8fafc',
+                        'text-secondary': '#cbd5e1',
+                        'border-color': '#475569',
+                        'border-color-shine': '#64748b',
+                        'btn-resume': '#2563eb',
+                        'btn-github': '#1e293b',
+                        'btn-linkedin': '#0284c7',
                         'devops-color': '#3b82f6',
                         'devops-bg': 'rgba(59, 130, 246, 0.1)',
                         'backend-color': '#8b5cf6',
@@ -30,7 +30,7 @@
                         'tools-color': '#10b981',
                         'tools-bg': 'rgba(16, 185, 129, 0.1)',
                         'gradient-start': 'rgba(59, 130, 246, 0.1)',
-                        'gradient-mid': 'rgba(139, 92, 246, 0.1)',
+                        'gradient-mid': 'rgba(139, 92, 246, 0.08)',
                         'gradient-end': 'rgba(16, 185, 129, 0.1)'
                     },
                     fontFamily: {
@@ -42,7 +42,12 @@
                         'shimmer': 'shimmer 2s infinite linear',
                         'fade-in': 'fadeIn 0.7s ease-in forwards',
                         'slide-up': 'slideUp 0.5s ease-out forwards',
-                        'pulse-subtle': 'pulseSubtle 3s infinite'
+                        'pulse-subtle': 'pulseSubtle 3s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'bounce-slow': 'bounceSlow 4s infinite',
+                        'gradient-x': 'gradientX 15s ease infinite',
+                        'typing': 'typing 3.5s steps(40, end)',
+                        'blink-caret': 'blink-caret .75s step-end infinite'
                     },
                     keyframes: {
                         wave: {
@@ -77,44 +82,146 @@
                         pulseSubtle: {
                             '0%, 100%': { opacity: '1' },
                             '50%': { opacity: '0.85' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        },
+                        bounceSlow: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-5px)' }
+                        },
+                        gradientX: {
+                            '0%, 100%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' }
+                        },
+                        typing: {
+                            'from': { width: '0' },
+                            'to': { width: '100%' }
+                        },
+                        'blink-caret': {
+                            'from, to': { borderColor: 'transparent' },
+                            '50%': { borderColor: 'white' }
                         }
                     },
                     boxShadow: {
                         'card': '0 4px 20px -2px rgba(0, 0, 0, 0.2)',
                         'card-hover': '0 8px 30px -2px rgba(0, 0, 0, 0.3)',
                         'btn': '0 4px 10px -2px rgba(0, 0, 0, 0.3)',
-                        'glow': '0 0 15px rgba(59, 130, 246, 0.3)'
+                        'glow': '0 0 15px rgba(59, 130, 246, 0.3)',
+                        'hero': '0 0 40px rgba(16, 185, 129, 0.15)'
                     },
                     backgroundImage: {
-                        'gradient-shine': 'linear-gradient(to right, transparent, rgba(255, 255, 255, 0.05), transparent)'
+                        'gradient-shine': 'linear-gradient(to right, transparent, rgba(255, 255, 255, 0.05), transparent)',
+                        'hero-gradient': 'linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.08) 50%, rgba(16, 185, 129, 0.1) 100%)'
                     }
                 }
             }
         }
     </script>
+    <style>
+        /* Preloader */
+        .loader {
+            display: flex;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #0a0e17;
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.6s ease-out, visibility 0.6s ease-out;
+        }
+        .loader.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .loader-circle {
+            width: 50px;
+            height: 50px;
+            border: 3px solid #30363d;
+            border-top: 3px solid #3b82f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Scroll progress indicator */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(to right, #3b82f6, #8b5cf6, #10b981);
+            width: 0%;
+            z-index: 9999;
+            transition: width 0.2s ease-out;
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
 </head>
 <body class="bg-bg-dark text-text-primary font-inter p-4 md:p-8 leading-normal selection:bg-devops-color selection:text-white">
-    <div class="max-w-3xl mx-auto animate-fade-in">
-        <header class="flex flex-col md:flex-row justify-between items-start md:items-center bg-card-bg border border-border-color rounded-lg p-6 mb-8 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative overflow-hidden group animate-slide-up">
-            <div class="absolute inset-0 bg-gradient-shine opacity-0 group-hover:animate-shimmer"></div>
+    <!-- Preloader -->
+    <div class="loader">
+        <div class="loader-circle"></div>
+    </div>
+    
+    <!-- Scroll progress indicator -->
+    <div class="progress-bar"></div>
+
+    <div class="max-w-6xl mx-auto opacity-0 transition-opacity duration-500" id="content">
+
+
+        <header class="bg-gradient-to-r from-gradient-start via-gradient-mid to-gradient-end p-8 lg:p-16 rounded-xl mb-8 shadow-lg transition-all duration-300 relative overflow-hidden animate-fade-in">
+            <div class="absolute top-0 right-0 -mt-8 -mr-8 w-40 h-40 bg-gradient-radial from-devops-color/10 to-transparent rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 -mb-8 -ml-8 w-40 h-40 bg-gradient-radial from-backend-color/10 to-transparent rounded-full blur-3xl"></div>
+            
             <div class="relative z-10">
-                <h1 class="text-2xl font-semibold flex items-center gap-2">
-                    <span class="inline-block animate-wave">👋</span> Hi, I'm Anshuman
-                </h1>
-                <p class="text-text-secondary mt-1">Backend & DevOps Engineer</p>
-            </div>
-            <div class="flex gap-2 flex-wrap mt-4 md:mt-0 w-full md:w-auto relative z-10">
-                <a href="#" class="flex items-center gap-2 px-4 py-2 bg-btn-resume text-white rounded-md text-sm font-medium transition-all duration-300 hover:opacity-90 hover:-translate-y-0.5 w-full md:w-auto justify-center shadow-btn">Resume</a>
-                <a href="#" class="flex items-center gap-2 px-4 py-2 bg-btn-github border border-border-color text-white rounded-md text-sm font-medium transition-all duration-300 hover:opacity-90 hover:-translate-y-0.5 w-full md:w-auto justify-center shadow-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-                    </svg> GitHub
-                </a>
-                <a href="#" class="flex items-center gap-2 px-4 py-2 bg-btn-linkedin text-white rounded-md text-sm font-medium transition-all duration-300 hover:opacity-90 hover:-translate-y-0.5 w-full md:w-auto justify-center shadow-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.025-.432.076-.649.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
-                    </svg> LinkedIn
-                </a>
+                <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between">
+                    <div class="mb-6 lg:mb-0">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="bg-card-bg p-3 rounded-full shadow-lg">
+                                <span class="text-3xl animate-wave">👋</span>
+                            </div>
+                            <h1 class="text-4xl lg:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-devops-color via-backend-color to-tools-color">
+                                Hi, I'm Anshuman
+                            </h1>
+                        </div>
+                        <div class="text-xl lg:text-2xl text-text-primary mb-4">
+                            Backend & DevOps Engineer
+                        </div>
+                        <div class="flex flex-wrap gap-3 mt-3">
+                            <span class="inline-block px-4 py-1.5 bg-devops-bg text-devops-color rounded-full text-sm font-medium">Docker</span>
+                            <span class="inline-block px-4 py-1.5 bg-backend-bg text-backend-color rounded-full text-sm font-medium">Node.js</span>
+                            <span class="inline-block px-4 py-1.5 bg-tools-bg text-tools-color rounded-full text-sm font-medium">Terraform</span>
+                            <span class="inline-block px-4 py-1.5 bg-card-bg text-text-primary rounded-full text-sm font-medium">Kubernetes</span>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 flex-wrap">
+                        <a href="#" class="flex items-center gap-2 px-5 py-2.5 bg-btn-resume text-white rounded-lg text-sm font-medium transition-all duration-300 hover:opacity-90 hover:-translate-y-0.5 shadow-lg">
+                            Resume
+                        </a>
+                        <a href="#" class="flex items-center gap-2 px-5 py-2.5 bg-btn-github border border-border-color text-white rounded-lg text-sm font-medium transition-all duration-300 hover:opacity-90 hover:-translate-y-0.5 shadow-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                            </svg> GitHub
+                        </a>
+                        <a href="#" class="flex items-center gap-2 px-5 py-2.5 bg-btn-linkedin text-white rounded-lg text-sm font-medium transition-all duration-300 hover:opacity-90 hover:-translate-y-0.5 shadow-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.025-.432.076-.649.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+                            </svg> LinkedIn
+                        </a>
+                    </div>
+                </div>
             </div>
         </header>
 
@@ -122,18 +229,37 @@
             <h2 class="text-xl font-semibold mb-4 pb-2 border-b border-border-color flex items-center gap-2">
                 <span class="text-devops-color">●</span> About Me
             </h2>
-            <div class="flex flex-col gap-3 pl-1">
-                <div class="flex items-start gap-3 group">
-                    <span class="text-devops-color text-xl transition-transform duration-300 group-hover:scale-110 mt-0.5">⚙️</span> 
-                    <span class="text-text-primary">Backend Dev + DevOps specialist with expertise in cloud-native solutions</span>
-                </div>
-                <div class="flex items-start gap-3 group">
-                    <span class="text-backend-color text-xl transition-transform duration-300 group-hover:scale-110 mt-0.5">🔧</span> 
-                    <span class="text-text-primary">I build robust APIs and scalable infrastructure using Docker, Kubernetes, and GitHub Actions</span>
-                </div>
-                <div class="flex items-start gap-3 group">
-                    <span class="text-tools-color text-xl transition-transform duration-300 group-hover:scale-110 mt-0.5">🚀</span> 
-                    <span class="text-text-primary">Passionate about performance optimization and automating deployments</span>
+            <div class="bg-card-bg border border-border-color rounded-lg p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative overflow-hidden">
+                <div class="absolute -right-20 -top-20 w-40 h-40 bg-gradient-radial from-devops-color/5 to-transparent rounded-full"></div>
+                <div class="absolute -left-20 -bottom-20 w-40 h-40 bg-gradient-radial from-tools-color/5 to-transparent rounded-full"></div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3 group">
+                            <span class="text-devops-color text-xl transition-transform duration-300 group-hover:scale-110 mt-0.5">⚙️</span> 
+                            <span class="text-text-primary">Backend Dev + DevOps specialist with expertise in cloud-native solutions</span>
+                        </div>
+                        <div class="flex items-start gap-3 group">
+                            <span class="text-backend-color text-xl transition-transform duration-300 group-hover:scale-110 mt-0.5">🔧</span> 
+                            <span class="text-text-primary">I build robust APIs and scalable infrastructure using Docker, Kubernetes, and GitHub Actions</span>
+                        </div>
+                        <div class="flex items-start gap-3 group">
+                            <span class="text-tools-color text-xl transition-transform duration-300 group-hover:scale-110 mt-0.5">🚀</span> 
+                            <span class="text-text-primary">Passionate about performance optimization and automating deployments</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col justify-center border-l border-border-color pl-6 space-y-3">
+                        <div class="text-xl font-medium text-text-primary mb-2">Specializing in</div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="py-1.5 px-3 rounded-md text-sm bg-devops-bg/50 text-devops-color">Microservices</span>
+                            <span class="py-1.5 px-3 rounded-md text-sm bg-backend-bg/50 text-backend-color">API Design</span>
+                            <span class="py-1.5 px-3 rounded-md text-sm bg-tools-bg/50 text-tools-color">CI/CD Pipelines</span>
+                            <span class="py-1.5 px-3 rounded-md text-sm bg-devops-bg/50 text-devops-color">Container Orchestration</span>
+                            <span class="py-1.5 px-3 rounded-md text-sm bg-backend-bg/50 text-backend-color">Database Optimization</span>
+                            <span class="py-1.5 px-3 rounded-md text-sm bg-tools-bg/50 text-tools-color">Infrastructure as Code</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -142,43 +268,99 @@
             <h2 class="text-xl font-semibold mb-4 pb-2 border-b border-border-color flex items-center gap-2">
                 <span class="text-backend-color">●</span> Tech Stack
             </h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div class="bg-card-bg border border-border-color rounded-lg overflow-hidden shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative group">
-                    <div class="absolute inset-0 bg-gradient-shine opacity-0 group-hover:animate-shimmer"></div>
-                    <div class="flex items-center p-3 gap-2 font-medium text-devops-color relative z-10">
-                        <span class="text-devops-color">🔷</span> DevOps
+            <div class="bg-card-bg border border-border-color rounded-lg p-8 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- DevOps Section -->
+                    <div class="relative group">
+                        <div class="absolute inset-0 bg-gradient-to-br from-devops-bg to-transparent rounded-lg opacity-10"></div>
+                        <div class="relative z-10">
+                            <div class="flex items-center mb-4">
+                                <div class="h-10 w-10 rounded-lg bg-devops-bg flex items-center justify-center shadow-lg mr-3">
+                                    <span class="text-2xl">🔷</span>
+                                </div>
+                                <h3 class="text-lg font-semibold text-devops-color">DevOps</h3>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-devops-color"></div>
+                                    <span class="text-text-primary">Docker & Kubernetes</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-devops-color"></div>
+                                    <span class="text-text-primary">Terraform</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-devops-color"></div>
+                                    <span class="text-text-primary">GitHub Actions</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-devops-color"></div>
+                                    <span class="text-text-primary">AWS & GCP</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="flex flex-wrap gap-2 p-3 relative z-10">
-                        <span class="py-1 px-3 rounded-full text-sm bg-devops-bg text-devops-color transition-all duration-300 hover:scale-105 hover:shadow-glow">Docker</span>
-                        <span class="py-1 px-3 rounded-full text-sm bg-devops-bg text-devops-color transition-all duration-300 hover:scale-105 hover:shadow-glow">Kubernetes</span>
-                        <span class="py-1 px-3 rounded-full text-sm bg-devops-bg text-devops-color transition-all duration-300 hover:scale-105 hover:shadow-glow">GitHub Actions</span>
-                        <span class="py-1 px-3 rounded-full text-sm bg-devops-bg text-devops-color transition-all duration-300 hover:scale-105 hover:shadow-glow">Terraform</span>
+                    
+                    <!-- Backend Section -->
+                    <div class="relative group">
+                        <div class="absolute inset-0 bg-gradient-to-br from-backend-bg to-transparent rounded-lg opacity-10"></div>
+                        <div class="relative z-10">
+                            <div class="flex items-center mb-4">
+                                <div class="h-10 w-10 rounded-lg bg-backend-bg flex items-center justify-center shadow-lg mr-3">
+                                    <span class="text-2xl">🟣</span>
+                                </div>
+                                <h3 class="text-lg font-semibold text-backend-color">Backend</h3>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-backend-color"></div>
+                                    <span class="text-text-primary">Node.js & Express</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-backend-color"></div>
+                                    <span class="text-text-primary">FastAPI & Python</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-backend-color"></div>
+                                    <span class="text-text-primary">PostgreSQL & MongoDB</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-backend-color"></div>
+                                    <span class="text-text-primary">Redis & Caching</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="bg-card-bg border border-border-color rounded-lg overflow-hidden shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative group">
-                    <div class="absolute inset-0 bg-gradient-shine opacity-0 group-hover:animate-shimmer"></div>
-                    <div class="flex items-center p-3 gap-2 font-medium text-backend-color relative z-10">
-                        <span class="text-backend-color">🟣</span> Backend
-                    </div>
-                    <div class="flex flex-wrap gap-2 p-3 relative z-10">
-                        <span class="py-1 px-3 rounded-full text-sm bg-backend-bg text-backend-color transition-all duration-300 hover:scale-105 hover:shadow-glow">Node.js</span>
-                        <span class="py-1 px-3 rounded-full text-sm bg-backend-bg text-backend-color transition-all duration-300 hover:scale-105 hover:shadow-glow">FastAPI</span>
-                        <span class="py-1 px-3 rounded-full text-sm bg-backend-bg text-backend-color transition-all duration-300 hover:scale-105 hover:shadow-glow">PostgreSQL</span>
-                        <span class="py-1 px-3 rounded-full text-sm bg-backend-bg text-backend-color transition-all duration-300 hover:scale-105 hover:shadow-glow">Redis</span>
-                    </div>
-                </div>
-                
-                <div class="bg-card-bg border border-border-color rounded-lg overflow-hidden shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative group">
-                    <div class="absolute inset-0 bg-gradient-shine opacity-0 group-hover:animate-shimmer"></div>
-                    <div class="flex items-center p-3 gap-2 font-medium text-tools-color relative z-10">
-                        <span class="text-tools-color">🟢</span> Tools
-                    </div>
-                    <div class="flex flex-wrap gap-2 p-3 relative z-10">
-                        <span class="py-1 px-3 rounded-full text-sm bg-tools-bg text-tools-color transition-all duration-300 hover:scale-105 hover:shadow-glow">Prometheus</span>
-                        <span class="py-1 px-3 rounded-full text-sm bg-tools-bg text-tools-color transition-all duration-300 hover:scale-105 hover:shadow-glow">Grafana</span>
-                        <span class="py-1 px-3 rounded-full text-sm bg-tools-bg text-tools-color transition-all duration-300 hover:scale-105 hover:shadow-glow">NGINX</span>
-                        <span class="py-1 px-3 rounded-full text-sm bg-tools-bg text-tools-color transition-all duration-300 hover:scale-105 hover:shadow-glow">Kafka</span>
+                    
+                    <!-- Tools Section -->
+                    <div class="relative group">
+                        <div class="absolute inset-0 bg-gradient-to-br from-tools-bg to-transparent rounded-lg opacity-10"></div>
+                        <div class="relative z-10">
+                            <div class="flex items-center mb-4">
+                                <div class="h-10 w-10 rounded-lg bg-tools-bg flex items-center justify-center shadow-lg mr-3">
+                                    <span class="text-2xl">🟢</span>
+                                </div>
+                                <h3 class="text-lg font-semibold text-tools-color">Tools</h3>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-tools-color"></div>
+                                    <span class="text-text-primary">Prometheus & Grafana</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-tools-color"></div>
+                                    <span class="text-text-primary">NGINX & Load Balancing</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-tools-color"></div>
+                                    <span class="text-text-primary">Kafka & RabbitMQ</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-tools-color"></div>
+                                    <span class="text-text-primary">Git & Version Control</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -188,31 +370,57 @@
             <h2 class="text-xl font-semibold mb-4 pb-2 border-b border-border-color flex items-center gap-2">
                 <span class="text-devops-color">●</span> Experience
             </h2>
-            <div class="bg-card-bg border border-border-color rounded-lg p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative group">
-                <div class="absolute inset-0 bg-gradient-shine opacity-0 group-hover:animate-shimmer"></div>
-                <div class="relative z-10">
-                    <div class="flex items-center gap-2 font-medium mb-3 text-devops-color">
-                        <span class="transition-transform duration-300 group-hover:scale-110">🚀</span> DevOps Intern - StartupX
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <div class="bg-card-bg border border-border-color rounded-lg p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative group">
+                    <div class="absolute inset-0 bg-gradient-shine opacity-0 group-hover:animate-shimmer"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 font-medium mb-3 text-devops-color">
+                            <span class="transition-transform duration-300 group-hover:scale-110">🚀</span> DevOps Intern - StartupX
+                        </div>
+                        <div class="text-text-secondary text-[15px] mb-3">Jan 2025 - Present</div>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2 text-text-primary/90 text-sm group">
+                                <span class="text-devops-color mt-1">▹</span>
+                                <span class="group-hover:translate-x-1 transition-transform duration-300">Dockerized 3 microservices and migrated from monolith architecture</span>
+                            </li>
+                            <li class="flex items-start gap-2 text-text-primary/90 text-sm group">
+                                <span class="text-devops-color mt-1">▹</span>
+                                <span class="group-hover:translate-x-1 transition-transform duration-300">Built CI/CD pipelines with GitHub Actions, reducing deployment time by 70%</span>
+                            </li>
+                            <li class="flex items-start gap-2 text-text-primary/90 text-sm group">
+                                <span class="text-devops-color mt-1">▹</span>
+                                <span class="group-hover:translate-x-1 transition-transform duration-300">Deployed applications to AWS using infrastructure as code with Terraform</span>
+                            </li>
+                            <li class="flex items-start gap-2 text-text-primary/90 text-sm group">
+                                <span class="text-devops-color mt-1">▹</span>
+                                <span class="group-hover:translate-x-1 transition-transform duration-300">Implemented monitoring and alerting with Prometheus and Grafana</span>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="text-text-secondary text-[15px] mb-3">Jan 2025 - Present</div>
-                    <ul class="space-y-2">
-                        <li class="flex items-start gap-2 text-text-primary/90 text-sm group">
-                            <span class="text-devops-color mt-1">▹</span>
-                            <span class="group-hover:translate-x-1 transition-transform duration-300">Dockerized 3 microservices and migrated from monolith architecture</span>
-                        </li>
-                        <li class="flex items-start gap-2 text-text-primary/90 text-sm group">
-                            <span class="text-devops-color mt-1">▹</span>
-                            <span class="group-hover:translate-x-1 transition-transform duration-300">Built CI/CD pipelines with GitHub Actions, reducing deployment time by 70%</span>
-                        </li>
-                        <li class="flex items-start gap-2 text-text-primary/90 text-sm group">
-                            <span class="text-devops-color mt-1">▹</span>
-                            <span class="group-hover:translate-x-1 transition-transform duration-300">Deployed applications to AWS using infrastructure as code with Terraform</span>
-                        </li>
-                        <li class="flex items-start gap-2 text-text-primary/90 text-sm group">
-                            <span class="text-devops-color mt-1">▹</span>
-                            <span class="group-hover:translate-x-1 transition-transform duration-300">Implemented monitoring and alerting with Prometheus and Grafana</span>
-                        </li>
-                    </ul>
+                </div>
+                
+                <div class="bg-card-bg border border-border-color rounded-lg p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative group">
+                    <div class="absolute inset-0 bg-gradient-shine opacity-0 group-hover:animate-shimmer"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 font-medium mb-3 text-backend-color">
+                            <span class="transition-transform duration-300 group-hover:scale-110">💻</span> Backend Developer - TechCorp
+                        </div>
+                        <div class="text-text-secondary text-[15px] mb-3">Aug 2024 - Dec 2024</div>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2 text-text-primary/90 text-sm group">
+                                <span class="text-backend-color mt-1">▹</span>
+                                <span class="group-hover:translate-x-1 transition-transform duration-300">Developed RESTful APIs using Node.js and Express</span>
+                            </li>
+                            <li class="flex items-start gap-2 text-text-primary/90 text-sm group">
+                                <span class="text-backend-color mt-1">▹</span>
+                                <span class="group-hover:translate-x-1 transition-transform duration-300">Implemented database optimizations that improved query performance by 40%</span>
+                            </li>
+                            <li class="flex items-start gap-2 text-text-primary/90 text-sm group">
+                                <span class="text-backend-color mt-1">▹</span>
+                                <span class="group-hover:translate-x-1 transition-transform duration-300">Created comprehensive API documentation using Swagger</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
@@ -222,44 +430,46 @@
                 <span class="text-tools-color">●</span> Projects
             </h2>
             
-            <div class="bg-card-bg border border-border-color rounded-lg p-5 mb-4 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative group">
-                <div class="absolute inset-0 bg-gradient-shine opacity-0 group-hover:animate-shimmer"></div>
-                <div class="relative z-10">
-                    <div class="flex items-center gap-2 font-medium mb-2 text-devops-color">
-                        <span class="transition-transform duration-300 group-hover:scale-110">🔗</span> PeerHire - Web3 Freelance Platform
-                    </div>
-                    <div class="text-text-secondary mb-3 text-[15px]">Smart contracts + CI/CD + Monitoring</div>
-                    <p class="text-text-secondary/80 text-sm mb-3">A decentralized freelance marketplace built on Ethereum that connects clients with developers. Features automated payments and dispute resolution.</p>
-                    <div class="flex gap-4">
-                        <a href="#" class="flex items-center gap-1 text-text-secondary text-sm hover:text-devops-color transition-colors duration-300 group-hover:translate-x-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-                            </svg> GitHub
-                        </a>
-                        <a href="#" class="flex items-center gap-1 text-text-secondary text-sm hover:text-devops-color transition-colors duration-300 group-hover:translate-x-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                <path d="M14 2a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h12zM2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2z"/>
-                                <path d="M6 11.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
-                            </svg> Demo
-                        </a>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <div class="bg-card-bg border border-border-color rounded-lg p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative group">
+                    <div class="absolute inset-0 bg-gradient-shine opacity-0 group-hover:animate-shimmer"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 font-medium mb-2 text-devops-color">
+                            <span class="transition-transform duration-300 group-hover:scale-110">🔗</span> PeerHire - Web3 Freelance Platform
+                        </div>
+                        <div class="text-text-secondary mb-3 text-[15px]">Smart contracts + CI/CD + Monitoring</div>
+                        <p class="text-text-secondary/80 text-sm mb-3">A decentralized freelance marketplace built on Ethereum that connects clients with developers. Features automated payments and dispute resolution.</p>
+                        <div class="flex gap-4">
+                            <a href="#" class="flex items-center gap-1 text-text-secondary text-sm hover:text-devops-color transition-colors duration-300 group-hover:translate-x-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                                </svg> GitHub
+                            </a>
+                            <a href="#" class="flex items-center gap-1 text-text-secondary text-sm hover:text-devops-color transition-colors duration-300 group-hover:translate-x-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M14 2a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h12zM2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2z"/>
+                                    <path d="M6 11.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+                                </svg> Demo
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="bg-card-bg border border-border-color rounded-lg p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative group">
-                <div class="absolute inset-0 bg-gradient-shine opacity-0 group-hover:animate-shimmer"></div>
-                <div class="relative z-10">
-                    <div class="flex items-center gap-2 font-medium mb-2 text-backend-color">
-                        <span class="transition-transform duration-300 group-hover:scale-110">💡</span> AutoScale Infra - Terraform + EKS
-                    </div>
-                    <div class="text-text-secondary mb-3 text-[15px]">Cloud-native setup with observability</div>
-                    <p class="text-text-secondary/80 text-sm mb-3">Infrastructure as Code setup for dynamic scaling of microservices. Includes monitoring with Prometheus/Grafana.</p>
-                    <div class="flex gap-4">
-                        <a href="#" class="flex items-center gap-1 text-text-secondary text-sm hover:text-backend-color transition-colors duration-300 group-hover:translate-x-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-                            </svg> GitHub
-                        </a>
+                
+                <div class="bg-card-bg border border-border-color rounded-lg p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative group">
+                    <div class="absolute inset-0 bg-gradient-shine opacity-0 group-hover:animate-shimmer"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 font-medium mb-2 text-backend-color">
+                            <span class="transition-transform duration-300 group-hover:scale-110">💡</span> AutoScale Infra - Terraform + EKS
+                        </div>
+                        <div class="text-text-secondary mb-3 text-[15px]">Cloud-native setup with observability</div>
+                        <p class="text-text-secondary/80 text-sm mb-3">Infrastructure as Code setup for dynamic scaling of microservices. Includes monitoring with Prometheus/Grafana.</p>
+                        <div class="flex gap-4">
+                            <a href="#" class="flex items-center gap-1 text-text-secondary text-sm hover:text-backend-color transition-colors duration-300 group-hover:translate-x-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                                </svg> GitHub
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -269,14 +479,35 @@
             <h2 class="text-xl font-semibold mb-4 pb-2 border-b border-border-color flex items-center gap-2">
                 <span class="text-backend-color">●</span> Education
             </h2>
-            <div class="bg-card-bg border border-border-color rounded-lg p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative group">
-                <div class="absolute inset-0 bg-gradient-shine opacity-0 group-hover:animate-shimmer"></div>
-                <div class="relative z-10">
-                    <div class="flex items-center gap-2 font-medium text-backend-color mb-2">
-                        <span class="transition-transform duration-300 group-hover:scale-110">🎓</span> B.Tech in CS
+            <div class="bg-card-bg border border-border-color rounded-lg overflow-hidden shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative">
+                <!-- Decorative elements -->
+                <div class="absolute top-0 right-0 h-20 w-20 bg-gradient-radial from-backend-color/10 to-transparent rounded-full"></div>
+                <div class="absolute bottom-0 left-0 h-24 w-24 bg-gradient-radial from-backend-color/5 to-transparent rounded-full"></div>
+                
+                <div class="p-8 relative z-10">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                        <div class="flex gap-4 items-center">
+                            <div class="h-16 w-16 rounded-full bg-backend-bg flex items-center justify-center shadow-lg">
+                                <span class="text-3xl">🎓</span>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-text-primary">Bachelor of Technology in Computer Science</h3>
+                                <p class="text-backend-color font-medium mt-1">University Institute of Technology</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2 px-4 py-2 bg-backend-bg rounded-lg shadow">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="text-backend-color" viewBox="0 0 16 16">
+                                    <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                                </svg>
+                                <span class="text-text-primary font-medium">2022 - 2026</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="text-text-secondary text-sm mt-2">2022-2026</div>
-                    <div class="text-text-secondary/80 text-xs mt-1">University Institute of Technology</div>
+                    <div class="mt-6 pl-4 border-l-2 border-backend-color/30">
+                        <p class="text-text-secondary">Specializing in modern software development practices with a focus on backend systems and cloud infrastructure. Coursework includes distributed systems, algorithms, and cloud computing.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -285,35 +516,56 @@
             <h2 class="text-xl font-semibold mb-4 pb-2 border-b border-border-color flex items-center gap-2">
                 <span class="text-tools-color">●</span> Contact
             </h2>
-            <div class="flex flex-col gap-4 bg-card-bg border border-border-color rounded-lg p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative group">
-                <div class="absolute inset-0 bg-gradient-shine opacity-0 group-hover:animate-shimmer"></div>
-                <div class="relative z-10 space-y-4">
-                    <a href="mailto:yourname@gmail.com" class="flex items-center gap-3 text-text-secondary hover:text-tools-color transition-all duration-300 hover:translate-x-1 group">
-                        <span class="text-tools-color/80 group-hover:text-tools-color transition-all duration-300">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                                <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
-                            </svg>
-                        </span>
-                        <span class="text-base">yourname@gmail.com</span>
-                    </a>
-                    
-                    <a href="https://github.com/yourhandle" target="_blank" class="flex items-center gap-3 text-text-secondary hover:text-tools-color transition-all duration-300 hover:translate-x-1 group">
-                        <span class="text-tools-color/80 group-hover:text-tools-color transition-all duration-300">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-                            </svg>
-                        </span>
-                        <span class="text-base">github.com/yourhandle</span>
-                    </a>
-                    
-                    <a href="https://linkedin.com/in/yourhandle" target="_blank" class="flex items-center gap-3 text-text-secondary hover:text-tools-color transition-all duration-300 hover:translate-x-1 group">
-                        <span class="text-tools-color/80 group-hover:text-tools-color transition-all duration-300">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.025-.432.076-.649.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
-                            </svg>
-                        </span>
-                        <span class="text-base">linkedin.com/in/yourhandle</span>
-                    </a>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-card-bg border border-border-color rounded-lg p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative group">
+                    <div class="absolute inset-0 bg-gradient-shine opacity-0 group-hover:animate-shimmer"></div>
+                    <div class="relative z-10 space-y-4">
+                        <h3 class="font-medium text-lg mb-3">Get In Touch</h3>
+                        <a href="mailto:yourname@gmail.com" class="flex items-center gap-3 text-text-secondary hover:text-tools-color transition-all duration-300 hover:translate-x-1 group">
+                            <span class="text-tools-color/80 group-hover:text-tools-color transition-all duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+                                </svg>
+                            </span>
+                            <span class="text-base">yourname@gmail.com</span>
+                        </a>
+                        
+                        <a href="https://github.com/yourhandle" target="_blank" class="flex items-center gap-3 text-text-secondary hover:text-tools-color transition-all duration-300 hover:translate-x-1 group">
+                            <span class="text-tools-color/80 group-hover:text-tools-color transition-all duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                                </svg>
+                            </span>
+                            <span class="text-base">github.com/yourhandle</span>
+                        </a>
+                        
+                        <a href="https://linkedin.com/in/yourhandle" target="_blank" class="flex items-center gap-3 text-text-secondary hover:text-tools-color transition-all duration-300 hover:translate-x-1 group">
+                            <span class="text-tools-color/80 group-hover:text-tools-color transition-all duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.025-.432.076-.649.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+                                </svg>
+                            </span>
+                            <span class="text-base">linkedin.com/in/yourhandle</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-card-bg border border-border-color rounded-lg p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative group">
+                    <div class="absolute inset-0 bg-gradient-shine opacity-0 group-hover:animate-shimmer"></div>
+                    <div class="relative z-10">
+                        <h3 class="font-medium text-lg mb-3">Availability</h3>
+                        <p class="text-text-secondary mb-4">I'm currently available for freelance work and full-time opportunities.</p>
+                        <div class="grid grid-cols-2 gap-2 text-text-secondary text-sm">
+                            <div>
+                                <p class="font-medium text-text-primary">Location</p>
+                                <p>Remote / Worldwide</p>
+                            </div>
+                            <div>
+                                <p class="font-medium text-text-primary">Availability</p>
+                                <p>20-40 hrs/week</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -330,8 +582,22 @@
 
     <!-- Enhanced Performance Optimizations -->
     <script>
-        // Lazy load animations for better performance
+        // Preloader
         document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                document.querySelector('.loader').classList.add('fade-out');
+                document.getElementById('content').classList.remove('opacity-0');
+            }, 800);
+            
+            // Scroll progress indicator
+            window.addEventListener('scroll', function() {
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+                document.querySelector('.progress-bar').style.width = scrolled + '%';
+            });
+            
+            // Intersection Observer for animations
             const observerOptions = {
                 root: null,
                 rootMargin: '0px',
@@ -354,3 +620,4 @@
         });
     </script>
 </body>
+</html>
