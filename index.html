@@ -208,6 +208,30 @@
         .section-transition:hover {
             transform: translateY(-5px);
         }
+        
+        /* Consistent card styling */
+        .card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Consistent spacing */
+        .section-spacing {
+            margin-bottom: 2.5rem;
+        }
+        
+        /* Consistent headings */
+        .section-heading {
+            letter-spacing: 0.025em;
+            position: relative;
+        }
+        
+        /* Consistent text sizes */
+        body {
+            font-size: 16px;
+            line-height: 1.6;
+        }
     </style>
 </head>
 <body class="bg-bg-dark text-text-primary font-inter p-4 md:p-8 leading-normal selection:bg-devops-color selection:text-white relative">
@@ -227,10 +251,10 @@
     <!-- Scroll progress indicator -->
     <div class="progress-bar"></div>
 
-    <div class="max-w-6xl mx-auto opacity-0 transition-opacity duration-500 relative z-10" id="content">
+    <div class="max-w-5xl mx-auto opacity-0 transition-opacity duration-500 relative z-10" id="content">
 
 
-        <header class="bg-gradient-to-r from-gradient-start via-gradient-mid to-gradient-end p-8 lg:p-16 rounded-xl mb-8 shadow-lg transition-all duration-300 relative overflow-hidden animate-fade-in">
+        <header class="bg-gradient-to-r from-gradient-start via-gradient-mid to-gradient-end p-8 lg:p-12 rounded-xl mb-10 shadow-lg transition-all duration-300 relative overflow-hidden animate-fade-in">
             <!-- Background animation elements -->
             <div class="absolute top-0 right-0 -mt-8 -mr-8 w-40 h-40 bg-gradient-radial from-devops-color/10 to-transparent rounded-full blur-3xl animate-pulse-subtle"></div>
             <div class="absolute bottom-0 left-0 -mb-8 -ml-8 w-40 h-40 bg-gradient-radial from-backend-color/10 to-transparent rounded-full blur-3xl animate-pulse-subtle" style="animation-delay: 1s;"></div>
@@ -277,16 +301,16 @@
             </div>
         </header>
 
-        <section class="mb-8 animate-slide-up section-transition" style="animation-delay: 100ms;">
-            <h2 class="text-xl font-semibold mb-4 pb-2 border-b border-border-color flex items-center gap-2">
+        <section class="mb-10 animate-slide-up section-transition" style="animation-delay: 100ms;">
+            <h2 class="text-xl font-semibold mb-5 pb-2 border-b border-border-color flex items-center gap-2 section-heading">
                 <span class="text-devops-color">●</span> About Me
             </h2>
-            <div class="bg-card-bg border border-border-color rounded-lg p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative overflow-hidden">
+            <div class="bg-card-bg border border-border-color rounded-lg p-7 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative overflow-hidden">
                 <div class="absolute -right-20 -top-20 w-40 h-40 bg-gradient-radial from-devops-color/5 to-transparent rounded-full animate-float-slow"></div>
                 <div class="absolute -left-20 -bottom-20 w-40 h-40 bg-gradient-radial from-tools-color/5 to-transparent rounded-full animate-float-slow" style="animation-delay: 1.5s"></div>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
-                    <div class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-7 relative z-10">
+                    <div class="space-y-5">
                         <div class="flex items-start gap-3 group">
                             <span class="text-devops-color text-xl transition-transform duration-300 group-hover:scale-110 mt-0.5 animate-float-1">⚙️</span> 
                             <span class="text-text-primary">Backend Dev + DevOps specialist with expertise in cloud-native solutions</span>
@@ -301,7 +325,7 @@
                         </div>
                     </div>
                     
-                    <div class="flex flex-col justify-center border-l border-border-color pl-6 space-y-3">
+                    <div class="flex flex-col justify-center border-l border-border-color pl-7 space-y-4">
                         <div class="text-xl font-medium text-text-primary mb-2">Specializing in</div>
                         <div class="flex flex-wrap gap-2">
                             <span class="py-1.5 px-3 rounded-md text-sm bg-devops-bg/50 text-devops-color animate-float-1">Microservices</span>
@@ -316,14 +340,14 @@
             </div>
         </section>
 
-        <section class="mb-8 animate-slide-up section-transition" style="animation-delay: 200ms;">
-            <h2 class="text-xl font-semibold mb-4 pb-2 border-b border-border-color flex items-center gap-2">
+        <section class="mb-10 animate-slide-up section-transition" style="animation-delay: 200ms;">
+            <h2 class="text-xl font-semibold mb-5 pb-2 border-b border-border-color flex items-center gap-2 section-heading">
                 <span class="text-backend-color">●</span> Tech Stack
             </h2>
-            <div class="bg-card-bg border border-border-color rounded-lg p-8 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative">
+            <div class="bg-card-bg border border-border-color rounded-lg p-7 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <!-- DevOps Section -->
-                    <div class="relative group">
+                    <div class="relative group card">
                         <div class="absolute inset-0 bg-gradient-to-br from-devops-bg to-transparent rounded-lg opacity-10"></div>
                         <div class="relative z-10">
                             <div class="flex items-center mb-4">
@@ -354,7 +378,7 @@
                     </div>
                     
                     <!-- Backend Section -->
-                    <div class="relative group">
+                    <div class="relative group card">
                         <div class="absolute inset-0 bg-gradient-to-br from-backend-bg to-transparent rounded-lg opacity-10"></div>
                         <div class="relative z-10">
                             <div class="flex items-center mb-4">
@@ -385,7 +409,7 @@
                     </div>
                     
                     <!-- Tools Section -->
-                    <div class="relative group">
+                    <div class="relative group card">
                         <div class="absolute inset-0 bg-gradient-to-br from-tools-bg to-transparent rounded-lg opacity-10"></div>
                         <div class="relative z-10">
                             <div class="flex items-center mb-4">
@@ -418,19 +442,19 @@
             </div>
         </section>
 
-        <section class="mb-8 animate-slide-up section-transition" style="animation-delay: 300ms;">
-            <h2 class="text-xl font-semibold mb-4 pb-2 border-b border-border-color flex items-center gap-2">
+        <section class="mb-10 animate-slide-up section-transition" style="animation-delay: 300ms;">
+            <h2 class="text-xl font-semibold mb-5 pb-2 border-b border-border-color flex items-center gap-2 section-heading">
                 <span class="text-devops-color">●</span> Experience
             </h2>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                <div class="bg-card-bg border border-border-color rounded-lg p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative group">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+                <div class="bg-card-bg border border-border-color rounded-lg p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative group card">
                     <div class="absolute inset-0 bg-gradient-shine opacity-0 group-hover:animate-shimmer"></div>
                     <div class="relative z-10">
                         <div class="flex items-center gap-2 font-medium mb-3 text-devops-color">
                             <span class="transition-transform duration-300 group-hover:scale-110">🚀</span> DevOps Engineer - PeerHire
                         </div>
                         <div class="text-text-secondary text-[15px] mb-3">May 2025 - Present · Internship</div>
-                        <ul class="space-y-2">
+                        <ul class="space-y-2.5">
                             <li class="flex items-start gap-2 text-text-primary/90 text-sm group">
                                 <span class="text-devops-color mt-1">▹</span>
                                 <span class="group-hover:translate-x-1 transition-transform duration-300">Working with MongoDB, Kubernetes and related technologies</span>
@@ -455,14 +479,14 @@
                     </div>
                 </div>
                 
-                <div class="bg-card-bg border border-border-color rounded-lg p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative group">
+                <div class="bg-card-bg border border-border-color rounded-lg p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative group card">
                     <div class="absolute inset-0 bg-gradient-shine opacity-0 group-hover:animate-shimmer"></div>
                     <div class="relative z-10">
                         <div class="flex items-center gap-2 font-medium mb-3 text-backend-color">
                             <span class="transition-transform duration-300 group-hover:scale-110">💻</span> Software Engineer - Tech Immortals
                         </div>
-                        <div class="text-text-secondary text-[15px] mb-3">Oct 2024 - Mar 2025 · Full-time</div>
-                        <ul class="space-y-2">
+                        <div class="text-text-secondary text-[15px] mb-3">May 2024 - Mar 2025 · Full-time & Internship</div>
+                        <ul class="space-y-2.5">
                             <li class="flex items-start gap-2 text-text-primary/90 text-sm group">
                                 <span class="text-backend-color mt-1">▹</span>
                                 <span class="group-hover:translate-x-1 transition-transform duration-300">Worked with PostgreSQL, Docker and related technologies</span>
@@ -479,59 +503,9 @@
                                 <span class="text-backend-color mt-1">▹</span>
                                 <span class="group-hover:translate-x-1 transition-transform duration-300">Configured cloud infrastructure for scalable applications</span>
                             </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
-                <div class="bg-card-bg border border-border-color rounded-lg p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative group">
-                    <div class="absolute inset-0 bg-gradient-shine opacity-0 group-hover:animate-shimmer"></div>
-                    <div class="relative z-10">
-                        <div class="flex items-center gap-2 font-medium mb-3 text-tools-color">
-                            <span class="transition-transform duration-300 group-hover:scale-110">🔧</span> Software Engineer - Tech Immortals
-                        </div>
-                        <div class="text-text-secondary text-[15px] mb-3">May 2024 - Sep 2024 · Internship</div>
-                        <ul class="space-y-2">
                             <li class="flex items-start gap-2 text-text-primary/90 text-sm group">
-                                <span class="text-tools-color mt-1">▹</span>
-                                <span class="group-hover:translate-x-1 transition-transform duration-300">Worked with PostgreSQL, Docker and related technologies</span>
-                            </li>
-                            <li class="flex items-start gap-2 text-text-primary/90 text-sm group">
-                                <span class="text-tools-color mt-1">▹</span>
-                                <span class="group-hover:translate-x-1 transition-transform duration-300">Assisted in development of backend services and APIs</span>
-                            </li>
-                            <li class="flex items-start gap-2 text-text-primary/90 text-sm group">
-                                <span class="text-tools-color mt-1">▹</span>
-                                <span class="group-hover:translate-x-1 transition-transform duration-300">Learned containerization and deployment workflows</span>
-                            </li>
-                            <li class="flex items-start gap-2 text-text-primary/90 text-sm group">
-                                <span class="text-tools-color mt-1">▹</span>
-                                <span class="group-hover:translate-x-1 transition-transform duration-300">Contributed to database optimization and management</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="bg-card-bg border border-border-color rounded-lg p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative group">
-                    <div class="absolute inset-0 bg-gradient-shine opacity-0 group-hover:animate-shimmer"></div>
-                    <div class="relative z-10">
-                        <div class="flex items-center gap-2 font-medium mb-3 text-devops-color">
-                            <span class="transition-transform duration-300 group-hover:scale-110">🖥️</span> Web Developer - CodeClause
-                        </div>
-                        <div class="text-text-secondary text-[15px] mb-3">Internship</div>
-                        <ul class="space-y-2">
-                            <li class="flex items-start gap-2 text-text-primary/90 text-sm group">
-                                <span class="text-devops-color mt-1">▹</span>
-                                <span class="group-hover:translate-x-1 transition-transform duration-300">Developed responsive web applications using HTML, CSS, and JavaScript</span>
-                            </li>
-                            <li class="flex items-start gap-2 text-text-primary/90 text-sm group">
-                                <span class="text-devops-color mt-1">▹</span>
-                                <span class="group-hover:translate-x-1 transition-transform duration-300">Created web-based projects including unit converters and timers</span>
-                            </li>
-                            <li class="flex items-start gap-2 text-text-primary/90 text-sm group">
-                                <span class="text-devops-color mt-1">▹</span>
-                                <span class="group-hover:translate-x-1 transition-transform duration-300">Collaborated with team members using version control systems</span>
+                                <span class="text-backend-color mt-1">▹</span>
+                                <span class="group-hover:translate-x-1 transition-transform duration-300">Promoted from intern to full-time position after demonstrating strong technical skills</span>
                             </li>
                         </ul>
                     </div>
@@ -539,16 +513,16 @@
             </div>
         </section>
 
-        <section class="mb-8 animate-slide-up section-transition" style="animation-delay: 400ms;">
-            <h2 class="text-xl font-semibold mb-4 pb-2 border-b border-border-color flex items-center gap-2">
+        <section class="mb-10 animate-slide-up section-transition" style="animation-delay: 400ms;">
+            <h2 class="text-xl font-semibold mb-5 pb-2 border-b border-border-color flex items-center gap-2 section-heading">
                 <span class="text-tools-color">●</span> Projects
             </h2>
             
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                <div class="bg-card-bg border border-border-color rounded-lg p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative group">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+                <div class="bg-card-bg border border-border-color rounded-lg p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative group card">
                     <div class="absolute inset-0 bg-gradient-shine opacity-0 group-hover:animate-shimmer"></div>
                     <div class="relative z-10">
-                        <div class="flex items-center gap-2 font-medium mb-2 text-devops-color">
+                        <div class="flex items-center gap-2 font-medium mb-3 text-devops-color">
                             <span class="transition-transform duration-300 group-hover:scale-110">🚀</span> Easy-Way-2.0
                         </div>
                         <div class="text-text-secondary mb-3 text-[15px]">MERN Stack</div>
@@ -563,10 +537,10 @@
                     </div>
                 </div>
                 
-                <div class="bg-card-bg border border-border-color rounded-lg p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative group">
+                <div class="bg-card-bg border border-border-color rounded-lg p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative group card">
                     <div class="absolute inset-0 bg-gradient-shine opacity-0 group-hover:animate-shimmer"></div>
                     <div class="relative z-10">
-                        <div class="flex items-center gap-2 font-medium mb-2 text-backend-color">
+                        <div class="flex items-center gap-2 font-medium mb-3 text-backend-color">
                             <span class="transition-transform duration-300 group-hover:scale-110">📝</span> Blogify
                         </div>
                         <div class="text-text-secondary mb-3 text-[15px]">MERN Stack</div>
@@ -582,17 +556,17 @@
                 </div>
             </div>
             
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
-                <div class="bg-card-bg border border-border-color rounded-lg p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative group">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-5">
+                <div class="bg-card-bg border border-border-color rounded-lg p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative group card">
                     <div class="absolute inset-0 bg-gradient-shine opacity-0 group-hover:animate-shimmer"></div>
                     <div class="relative z-10">
-                        <div class="flex items-center gap-2 font-medium mb-2 text-tools-color">
+                        <div class="flex items-center gap-2 font-medium mb-3 text-tools-color">
                             <span class="transition-transform duration-300 group-hover:scale-110">💼</span> Freelancing Platforms
                         </div>
                         <div class="text-text-secondary mb-3 text-[15px]">MERN Stack</div>
                         <p class="text-text-secondary/80 text-sm mb-3">A comprehensive platform connecting freelancers with clients, featuring project management tools and secure payment integration.</p>
                         <div class="flex gap-4">
-                            <a href="https://github.com/AnshumanPatek/freelancing-platforms" class="flex items-center gap-1 text-text-secondary text-sm hover:text-tools-color transition-colors duration-300 group-hover:translate-x-1">
+                            <a href="https://github.com/AnshumanPatek/Freelancing-Platforms" class="flex items-center gap-1 text-text-secondary text-sm hover:text-tools-color transition-colors duration-300 group-hover:translate-x-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                                     <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
                                 </svg> GitHub
@@ -603,46 +577,45 @@
             </div>
         </section>
 
-        <section class="mb-8 animate-slide-up section-transition" style="animation-delay: 500ms;">
-            <h2 class="text-xl font-semibold mb-4 pb-2 border-b border-border-color flex items-center gap-2">
+        <section class="mb-10 animate-slide-up section-transition" style="animation-delay: 500ms;">
+            <h2 class="text-xl font-semibold mb-5 pb-2 border-b border-border-color flex items-center gap-2 section-heading">
                 <span class="text-backend-color">●</span> Education
             </h2>
-            
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                <div class="bg-card-bg border border-border-color rounded-lg p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative group">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div class="bg-card-bg border border-border-color rounded-lg p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative group card">
                     <div class="absolute inset-0 bg-gradient-shine opacity-0 group-hover:animate-shimmer"></div>
                     <div class="relative z-10">
-                        <div class="flex items-center gap-2 font-medium mb-2 text-backend-color">
+                        <div class="flex items-center gap-2 font-medium mb-3 text-backend-color">
                             <span class="transition-transform duration-300 group-hover:scale-110">🎓</span> KIET Group of Institutions
                         </div>
-                        <div class="text-text-secondary mb-1 text-[15px]">Master of Computer Applications - MCA, Computer Science</div>
-                        <div class="text-text-secondary/80 text-sm mb-2">Nov 2022 - Aug 2024</div>
+                        <div class="text-text-secondary text-[15px] mb-3">Master of Computer Applications (MCA) · 2022-2025</div>
+                        <p class="text-text-primary/90 text-sm">Focused on advanced software development, cloud computing, and DevOps practices.</p>
                     </div>
                 </div>
                 
-                <div class="bg-card-bg border border-border-color rounded-lg p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative group">
+                <div class="bg-card-bg border border-border-color rounded-lg p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative group card">
                     <div class="absolute inset-0 bg-gradient-shine opacity-0 group-hover:animate-shimmer"></div>
                     <div class="relative z-10">
-                        <div class="flex items-center gap-2 font-medium mb-2 text-backend-color">
-                            <span class="transition-transform duration-300 group-hover:scale-110">🎓</span> Anugrah Narayan (A.N.) College, Patna
+                        <div class="flex items-center gap-2 font-medium mb-3 text-backend-color">
+                            <span class="transition-transform duration-300 group-hover:scale-110">🎓</span> Anugrah Narayan College
                         </div>
-                        <div class="text-text-secondary mb-1 text-[15px]">Bachelor of Computer Applications, Computer Science</div>
-                        <div class="text-text-secondary/80 text-sm mb-2">Jan 2018 - Dec 2021</div>
+                        <div class="text-text-secondary text-[15px] mb-3">Bachelor of Computer Applications (BCA) · 2019-2022</div>
+                        <p class="text-text-primary/90 text-sm">Studied programming fundamentals, data structures, and web development.</p>
                     </div>
                 </div>
             </div>
         </section>
-
-        <section class="mb-8 animate-slide-up section-transition" style="animation-delay: 600ms;">
-            <h2 class="text-xl font-semibold mb-4 pb-2 border-b border-border-color flex items-center gap-2">
+        
+        <section class="mb-10 animate-slide-up section-transition" style="animation-delay: 600ms;">
+            <h2 class="text-xl font-semibold mb-5 pb-2 border-b border-border-color flex items-center gap-2 section-heading">
                 <span class="text-tools-color">●</span> Contact
             </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="bg-card-bg border border-border-color rounded-lg p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative group">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div class="bg-card-bg border border-border-color rounded-lg p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative group card">
                     <div class="absolute inset-0 bg-gradient-shine opacity-0 group-hover:animate-shimmer"></div>
                     <div class="relative z-10 space-y-4">
                         <h3 class="font-medium text-lg mb-3">Get In Touch</h3>
-                        <a href="mailto:yourname@gmail.com" class="flex items-center gap-3 text-text-secondary hover:text-tools-color transition-all duration-300 hover:translate-x-1 group">
+                        <a href="mailto:anshuman.patek@gmail.com" class="flex items-center gap-3 text-text-secondary hover:text-tools-color transition-all duration-300 hover:translate-x-1 group">
                             <span class="text-tools-color/80 group-hover:text-tools-color transition-all duration-300">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
                                     <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
@@ -660,7 +633,7 @@
                             GitHub
                         </a>
                         
-                        <a href="https://linkedin.com/in/anshuman-patek" target="_blank" class="flex items-center gap-3 text-text-secondary hover:text-tools-color transition-all duration-300 hover:translate-x-1 group">
+                        <a href="https://www.linkedin.com/in/anshuman-patek/" target="_blank" class="flex items-center gap-3 text-text-secondary hover:text-tools-color transition-all duration-300 hover:translate-x-1 group">
                             <span class="text-tools-color/80 group-hover:text-tools-color transition-all duration-300">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
                                     <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.025-.432.076-.649.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
@@ -671,7 +644,7 @@
                     </div>
                 </div>
                 
-                <div class="bg-card-bg border border-border-color rounded-lg p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative group">
+                <div class="bg-card-bg border border-border-color rounded-lg p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative group card">
                     <div class="absolute inset-0 bg-gradient-shine opacity-0 group-hover:animate-shimmer"></div>
                     <div class="relative z-10">
                         <h3 class="font-medium text-lg mb-3">Availability</h3>
@@ -690,7 +663,7 @@
                 </div>
             </div>
         </section>
-
+        
         <footer class="text-center mt-12 pt-6 text-text-secondary text-sm border-t border-border-color animate-slide-up" style="animation-delay: 700ms;">
             <div class="relative group">
                 <p class="flex items-center justify-center gap-2 transition-all duration-300 group-hover:text-text-primary">
@@ -701,42 +674,23 @@
         </footer>
     </div>
 
-    <!-- Enhanced Performance Optimizations -->
     <script>
-        // Preloader
-        document.addEventListener('DOMContentLoaded', function() {
+        // Wait for the page to load
+        window.addEventListener('load', function() {
+            // Show content
+            document.getElementById('content').classList.add('opacity-100');
+            
+            // Hide loader after a slight delay
             setTimeout(function() {
                 document.querySelector('.loader').classList.add('fade-out');
-                document.getElementById('content').classList.remove('opacity-0');
-            }, 800);
+            }, 500);
             
             // Scroll progress indicator
             window.addEventListener('scroll', function() {
-                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-                const scrolled = (winScroll / height) * 100;
-                document.querySelector('.progress-bar').style.width = scrolled + '%';
-            });
-            
-            // Intersection Observer for animations
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.1
-            };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-            
-            // Observe all sections
-            document.querySelectorAll('section').forEach(section => {
-                observer.observe(section);
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrollPercent = (scrollTop / scrollHeight) * 100;
+                document.querySelector('.progress-bar').style.width = scrollPercent + '%';
             });
         });
     </script>
