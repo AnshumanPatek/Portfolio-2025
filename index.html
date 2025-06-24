@@ -27,11 +27,11 @@
                         'devops-bg': 'rgba(59, 130, 246, 0.1)',
                         'backend-color': '#8b5cf6',
                         'backend-bg': 'rgba(139, 92, 246, 0.1)',
-                        'tools-color': '#9333ea',
-                        'tools-bg': 'rgba(147, 51, 234, 0.1)',
+                        'tools-color': '#10b981',
+                        'tools-bg': 'rgba(16, 185, 129, 0.1)',
                         'gradient-start': 'rgba(59, 130, 246, 0.1)',
                         'gradient-mid': 'rgba(139, 92, 246, 0.1)',
-                        'gradient-end': 'rgba(147, 51, 234, 0.1)'
+                        'gradient-end': 'rgba(16, 185, 129, 0.1)'
                     },
                     fontFamily: {
                         'inter': ['Inter', 'sans-serif']
@@ -172,7 +172,7 @@
                 <div class="bg-card-bg border border-border-color rounded-lg overflow-hidden shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative group">
                     <div class="absolute inset-0 bg-gradient-shine opacity-0 group-hover:animate-shimmer"></div>
                     <div class="flex items-center p-3 gap-2 font-medium text-tools-color relative z-10">
-                        <span class="text-tools-color">🟪</span> Tools
+                        <span class="text-tools-color">🟢</span> Tools
                     </div>
                     <div class="flex flex-wrap gap-2 p-3 relative z-10">
                         <span class="py-1 px-3 rounded-full text-sm bg-tools-bg text-tools-color transition-all duration-300 hover:scale-105 hover:shadow-glow">Prometheus</span>
@@ -185,6 +185,39 @@
         </section>
 
         <section class="mb-8 animate-slide-up" style="animation-delay: 300ms;">
+            <h2 class="text-xl font-semibold mb-4 pb-2 border-b border-border-color flex items-center gap-2">
+                <span class="text-devops-color">●</span> Experience
+            </h2>
+            <div class="bg-card-bg border border-border-color rounded-lg p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative group">
+                <div class="absolute inset-0 bg-gradient-shine opacity-0 group-hover:animate-shimmer"></div>
+                <div class="relative z-10">
+                    <div class="flex items-center gap-2 font-medium mb-3 text-devops-color">
+                        <span class="transition-transform duration-300 group-hover:scale-110">🚀</span> DevOps Intern - StartupX
+                    </div>
+                    <div class="text-text-secondary text-[15px] mb-3">Jan 2025 - Present</div>
+                    <ul class="space-y-2">
+                        <li class="flex items-start gap-2 text-text-primary/90 text-sm group">
+                            <span class="text-devops-color mt-1">▹</span>
+                            <span class="group-hover:translate-x-1 transition-transform duration-300">Dockerized 3 microservices and migrated from monolith architecture</span>
+                        </li>
+                        <li class="flex items-start gap-2 text-text-primary/90 text-sm group">
+                            <span class="text-devops-color mt-1">▹</span>
+                            <span class="group-hover:translate-x-1 transition-transform duration-300">Built CI/CD pipelines with GitHub Actions, reducing deployment time by 70%</span>
+                        </li>
+                        <li class="flex items-start gap-2 text-text-primary/90 text-sm group">
+                            <span class="text-devops-color mt-1">▹</span>
+                            <span class="group-hover:translate-x-1 transition-transform duration-300">Deployed applications to AWS using infrastructure as code with Terraform</span>
+                        </li>
+                        <li class="flex items-start gap-2 text-text-primary/90 text-sm group">
+                            <span class="text-devops-color mt-1">▹</span>
+                            <span class="group-hover:translate-x-1 transition-transform duration-300">Implemented monitoring and alerting with Prometheus and Grafana</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-8 animate-slide-up" style="animation-delay: 400ms;">
             <h2 class="text-xl font-semibold mb-4 pb-2 border-b border-border-color flex items-center gap-2">
                 <span class="text-tools-color">●</span> Projects
             </h2>
@@ -232,73 +265,18 @@
             </div>
         </section>
 
-        <section class="mb-8 animate-slide-up" style="animation-delay: 400ms;">
+        <section class="mb-8 animate-slide-up" style="animation-delay: 500ms;">
             <h2 class="text-xl font-semibold mb-4 pb-2 border-b border-border-color flex items-center gap-2">
-                <span class="text-devops-color">●</span> Experience
+                <span class="text-backend-color">●</span> Education
             </h2>
             <div class="bg-card-bg border border-border-color rounded-lg p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative group">
                 <div class="absolute inset-0 bg-gradient-shine opacity-0 group-hover:animate-shimmer"></div>
                 <div class="relative z-10">
-                    <div class="flex items-center gap-2 font-medium mb-3 text-devops-color">
-                        <span class="transition-transform duration-300 group-hover:scale-110">🚀</span> DevOps Intern - StartupX
+                    <div class="flex items-center gap-2 font-medium text-backend-color mb-2">
+                        <span class="transition-transform duration-300 group-hover:scale-110">🎓</span> B.Tech in CS
                     </div>
-                    <div class="text-text-secondary text-[15px] mb-3">Jan 2025 - Present</div>
-                    <ul class="space-y-2">
-                        <li class="flex items-start gap-2 text-text-primary/90 text-sm group">
-                            <span class="text-devops-color mt-1">▹</span>
-                            <span class="group-hover:translate-x-1 transition-transform duration-300">Dockerized 3 microservices and migrated from monolith architecture</span>
-                        </li>
-                        <li class="flex items-start gap-2 text-text-primary/90 text-sm group">
-                            <span class="text-devops-color mt-1">▹</span>
-                            <span class="group-hover:translate-x-1 transition-transform duration-300">Built CI/CD pipelines with GitHub Actions, reducing deployment time by 70%</span>
-                        </li>
-                        <li class="flex items-start gap-2 text-text-primary/90 text-sm group">
-                            <span class="text-devops-color mt-1">▹</span>
-                            <span class="group-hover:translate-x-1 transition-transform duration-300">Deployed applications to AWS using infrastructure as code with Terraform</span>
-                        </li>
-                        <li class="flex items-start gap-2 text-text-primary/90 text-sm group">
-                            <span class="text-devops-color mt-1">▹</span>
-                            <span class="group-hover:translate-x-1 transition-transform duration-300">Implemented monitoring and alerting with Prometheus and Grafana</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section class="mb-8 animate-slide-up" style="animation-delay: 500ms;">
-            <h2 class="text-xl font-semibold mb-4 pb-2 border-b border-border-color flex items-center gap-2">
-                <span class="text-backend-color">●</span> Education & Certs
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div class="bg-card-bg border border-border-color rounded-lg p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative group">
-                    <div class="absolute inset-0 bg-gradient-shine opacity-0 group-hover:animate-shimmer"></div>
-                    <div class="relative z-10">
-                        <div class="flex items-center gap-2 font-medium text-backend-color mb-2">
-                            <span class="transition-transform duration-300 group-hover:scale-110">🎓</span> B.Tech in CS
-                        </div>
-                        <div class="text-text-secondary text-sm mt-2">2022-2026</div>
-                        <div class="text-text-secondary/80 text-xs mt-1">University Institute of Technology</div>
-                    </div>
-                </div>
-                <div class="bg-card-bg border border-border-color rounded-lg p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative group">
-                    <div class="absolute inset-0 bg-gradient-shine opacity-0 group-hover:animate-shimmer"></div>
-                    <div class="relative z-10">
-                        <div class="flex items-center gap-2 font-medium text-backend-color mb-2">
-                            <span class="transition-transform duration-300 group-hover:scale-110">🥇</span> AWS Certified Cloud Practitioner
-                        </div>
-                        <div class="text-text-secondary text-sm mt-2">March 2025</div>
-                        <div class="text-text-secondary/80 text-xs mt-1">Amazon Web Services</div>
-                    </div>
-                </div>
-                <div class="bg-card-bg border border-border-color rounded-lg p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border-color-shine relative group">
-                    <div class="absolute inset-0 bg-gradient-shine opacity-0 group-hover:animate-shimmer"></div>
-                    <div class="relative z-10">
-                        <div class="flex items-center gap-2 font-medium text-backend-color mb-2">
-                            <span class="transition-transform duration-300 group-hover:scale-110">🥇</span> Docker + K8s Mastery
-                        </div>
-                        <div class="text-text-secondary text-sm mt-2">February 2025</div>
-                        <div class="text-text-secondary/80 text-xs mt-1">Udemy</div>
-                    </div>
+                    <div class="text-text-secondary text-sm mt-2">2022-2026</div>
+                    <div class="text-text-secondary/80 text-xs mt-1">University Institute of Technology</div>
                 </div>
             </div>
         </section>
